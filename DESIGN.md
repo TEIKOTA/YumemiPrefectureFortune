@@ -269,9 +269,9 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
 *(このフェーズは、他のすべての機能の基礎となります)*
 
 -   **`feature/setup-project`**
-    -   [ ] Xcodeプロジェクトの初期設定
-    -   [ ] アプリアイコン、アクセントカラーなどのアセット設定
-    -   [ ] SwiftLintの導入と設定
+    -   [x] Xcodeプロジェクトの初期設定
+    -   [x] アプリアイコン、アクセントカラーなどのアセット設定
+    -   [x] ~~SwiftLintの導入と設定~~(デフォルトのツールを使うことに)
 -   **`feature/implement-models`**
     -   [ ] `BloodType.swift`, `DTOs.swift`, `UserProfile.swift`を作成
     -   [ ] `SwiftData`のコンテナ設定
