@@ -55,7 +55,14 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+#Preview("light") {
     ContentView()
         .modelContainer(for: Item.self, inMemory: true)
+        .preferredColorScheme(.light)
+}
+
+#Preview("dark") {
+    ContentView()
+        .modelContainer(for: Item.self, inMemory: true)
+        .preferredColorScheme(.dark)
 }
