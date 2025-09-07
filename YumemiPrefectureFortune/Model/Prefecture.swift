@@ -1,16 +1,18 @@
 import Foundation
 
+/// APIはスネークケースのためキャメルケースにデコードの際は以下のように記述することで解決
+/// decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-struct Prefecture {
-    var name: String
-    var capital: String
-    var citizenDay: MonthDay?
-    var logoUrl: URL
-    var brief: String
-    var hasCoastLine: Bool
+struct Prefecture: Decodable {
+    let name: String
+    let capital: String
+    let citizenDay: MonthDay?
+    let logoUrl: URL
+    let brief: String
+    let hasCoastLine: Bool
 }
 
-struct MonthDay {
-    var month: Int
-    var day: Int
+struct MonthDay: Decodable {
+    let month: Int
+    let day: Int
 }
