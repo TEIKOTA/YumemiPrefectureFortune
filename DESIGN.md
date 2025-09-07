@@ -255,3 +255,72 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
 -   **同じ占い結果のユーザーとのマッチング機能**
     -   **目的:** 「占い」という共通点でユーザー同士のつながりを生み出し、アプリの継続利用を促進するため。
     -   **アプローチ案:** Firebaseやカスタムバックエンドを構築し、ユーザー認証、プロフィール管理、チャット機能などを実装する。大規模な追加開発となる。そのため今回実装するなら架空のユーザーを複数作成してそこを仮想サーバーと見立てる。
+
+---
+
+## 6. 開発計画（ブランチ戦略）
+
+本プロジェクトはGit Flowをベースとしたブランチ戦略を採用する。
+`develop`ブランチから、機能単位で`feature`ブランチを作成して開発を進める。
+
+### 詳細な作業ブランチ計画
+
+#### **Phase 1: 基盤整備**
+*(このフェーズは、他のすべての機能の基礎となります)*
+
+-   **`feature/setup-project`**
+    -   [ ] Xcodeプロジェクトの初期設定
+    -   [ ] アプリアイコン、アクセントカラーなどのアセット設定
+    -   [ ] SwiftLintの導入と設定
+-   **`feature/implement-models`**
+    -   [ ] `BloodType.swift`, `DTOs.swift`, `UserProfile.swift`を作成
+    -   [ ] `SwiftData`のコンテナ設定
+    -   [ ] **UnitTest:** モデルの初期化やロジック（もしあれば）を検証
+
+#### **Phase 2: API通信層**
+*(モデル定義に依存し、UI層から利用されます)*
+
+-   **`feature/api-fortune-client`**
+    -   [ ] `FortuneAPIService`を実装
+    -   [ ] **UnitTest:** モックを使ったAPIクライアントのテスト
+-   **`feature/api-image-client`**
+    -   [ ] `ImageService`の画像取得・検索部分を実装
+    -   [ ] **UnitTest:** モックを使った画像取得処理のテスト
+-   **`feature/api-caching`**
+    -   [ ] `ImageService`にキャッシュ機構を実装
+    -   [ ] **UnitTest:** キャッシュの追加・取得・削除ロジックを検証
+-   **`feature/api-error-handling`**
+    -   [ ] `APIError` enumなど、カスタムエラー型を定義
+    -   [ ] 各APIサービスクラスにエラーハンドリングを組み込む
+
+#### **Phase 3: プロフィール作成・編集機能**
+*(API層やモデルに依存します)*
+
+-   **`feature/profile-form-viewmodel`**
+    -   [ ] `FortuneProfileFormViewModel`のロジックを実装
+    -   [ ] **UnitTest:** バリデーションや保存ロジックを検証
+-   **`feature/profile-form-ui`**
+    -   [ ] `FortuneProfileFormView`のUIを構築
+    -   [ ] ViewModelとUIをバインディング
+    -   [ ] **UITest:** プロフィールが正常に作成・編集できるか一連の流れをテスト
+
+#### **Phase 4: ユーザーリスト機能**
+*(モデル定義に依存します)*
+
+-   **`feature/user-list-ui`**
+    -   [ ] `FortuneUserListView`のUIを構築
+    -   [ ] `@Query`を用いたリスト表示を実装
+-   **`feature/user-list-actions`**
+    -   [ ] 詳細画面への遷移、削除機能を実装
+    -   [ ] **UITest:** 画面遷移、ユーザー削除が正しく動作するかテスト
+
+#### **Phase 5: 占い詳細機能**
+*(すべての機能に依存します)*
+
+-   **`feature/fortune-detail-viewmodel`**
+    -   [ ] `FortuneDetailViewModel`のロジックを実装
+    -   [ ] **UnitTest:** 占い実行や状態遷移のロジックを検証
+-   **`feature/fortune-detail-ui`**
+    -   [ ] `FortuneDetailView`のUIを構築
+    -   [ ] ViewModelとUIをバインディング
+    -   [ ] **UITest:** 占い結果が正しく表示されるか、ローディング表示が機能するかテスト
