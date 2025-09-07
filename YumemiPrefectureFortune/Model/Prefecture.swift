@@ -5,7 +5,7 @@ struct Prefecture {
     var name: String
     var capital: String
     var citizenDay: MonthDay?
-    var logoURL: URL
+    var logoUrl: URL
     var brief: String
     var hasCoastLine: Bool
 }
