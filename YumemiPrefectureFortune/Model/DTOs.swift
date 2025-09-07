@@ -1,13 +1,16 @@
 import Foundation
 
+// MARK: - Request DTO
 
-struct FortuneRequestDTO {
+struct FortuneRequestDTO: Encodable {
     var name: String
     var birthday: Date
     var bloodType: String
     var today: Date
 }
 
-struct FortuneResult {
+// MARK: - Response DTO
+
+struct FortuneResult: Decodable {
     var prefecture: Prefecture
 }
