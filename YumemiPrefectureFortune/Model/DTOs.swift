@@ -9,14 +9,14 @@ struct YMD: Codable, Equatable {
 }
 
 struct FortuneRequestDTO: Encodable {
-    var name: String
-    var birthday: YMD
-    var bloodType: String
-    var today: YMD
+    let name: String
+    let birthday: YMD
+    let bloodType: String
+    let today: YMD
 }
 
 // MARK: - Response DTO
 
 struct FortuneResult: Decodable {
-    var prefecture: Prefecture
+    let prefecture: Prefecture
 }
