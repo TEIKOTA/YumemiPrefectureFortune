@@ -1,0 +1,14 @@
+{
+    "name": "ゆめみん",
+    "birthday": {
+        "year": 2000,
+        "month": 1,
+        "day": 27
+    },
+    "blood_type": "ab",
+    "today": {
+        "year": 2000,
+        "month": 1,
+        "day": 27
+    }
+}
