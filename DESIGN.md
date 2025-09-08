@@ -273,9 +273,9 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
     -   [x] アプリアイコン、アクセントカラーなどのアセット設定
     -   [x] ~~SwiftLintの導入と設定~~(デフォルトのツールを使うことに)
 -   **`feature/implement-models`**
-    -   [ ] `BloodType.swift`, `DTOs.swift`, `UserProfile.swift`を作成
-    -   [ ] `SwiftData`のコンテナ設定
-    -   [ ] **UnitTest:** モデルの初期化やロジック（もしあれば）を検証
+    -   [x] `BloodType.swift`, `DTOs.swift`, `UserProfile.swift`を作成
+    -   [x] `SwiftData`のコンテナ設定
+    -   [x] **UnitTest:** モデルの初期化やロジック（もしあれば）を検証
 
 #### **Phase 2: API通信層**
 *(モデル定義に依存し、UI層から利用されます)*
