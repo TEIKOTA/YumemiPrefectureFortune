@@ -1,6 +1,7 @@
 
 /// Codable に準拠することでSwiftDataにおいてStringへ自動で encode/decodeする
-enum BloodType: String, Codable {
+/// CaseIterableに準拠することでallCasesで全パターンの配列を取得可能([A, B, AB, O])
+enum BloodType: String, Codable, CaseIterable {
     case A = "a"
     case B = "b"
     case AB = "ab"
