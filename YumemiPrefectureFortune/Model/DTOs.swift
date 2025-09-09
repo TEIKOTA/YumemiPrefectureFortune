@@ -19,4 +19,13 @@ struct FortuneRequestDTO: Encodable {
 
 struct FortuneResult: Decodable {
     let prefecture: Prefecture
+    
+    init(prefecture: Prefecture) {
+        self.prefecture = prefecture
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.prefecture = try container.decode(Prefecture.self)
+    }
 }
