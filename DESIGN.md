@@ -281,8 +281,8 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
 *(モデル定義に依存し、UI層から利用されます)*
 
 -   **`feature/api-fortune-client`**
-    -   [ ] `FortuneAPIService`を実装
-    -   [ ] **UnitTest:** モックを使ったAPIクライアントのテスト
+    -   [x] `FortuneAPIService`を実装
+    -   [x] **UnitTest:** モックを使ったAPIクライアントのテスト
 -   **`feature/api-image-client`**
     -   [ ] `ImageService`の画像取得・検索部分を実装
     -   [ ] **UnitTest:** モックを使った画像取得処理のテスト
