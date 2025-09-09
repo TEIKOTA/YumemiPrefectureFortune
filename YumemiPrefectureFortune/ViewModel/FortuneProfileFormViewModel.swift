@@ -1,4 +1,5 @@
 import SwiftUI
+import PhotosUI
 import SwiftData
 
 
@@ -68,10 +69,33 @@ final class FortuneProfileFormViewModel: ObservableObject {
         }
     }
     
+    func loadIcon(from item: PhotosPickerItem?) async throws {
+        // ユーザーが選択を解除した場合、アイコンをリセットして正常終了
+        guard let item else {
+            resetIcon()
+            return
+        }
+        
+        guard let data = try await item.loadTransferable(type: Data.self) else {
+            throw IconLoadError.failedToReadItem
+        }
+        
+        guard let image = UIImage(data: data) else {
+            throw IconLoadError.dataCorrupted
+        }
+        
+        self.icon = data
+        self.iconImage = image
+        
+    }
+    
     private func resetIcon() {
         self.icon = nil
         self.iconImage = nil
     }
+
+}
+
 enum ProfileFormMode {
     case create
     case edit(UserProfile)
