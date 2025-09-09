@@ -1,18 +1,12 @@
-//
-//  YumemiPrefectureFortuneApp.swift
-//  YumemiPrefectureFortune
-//
-//  Created by 髙橋　広大 on 2025/09/02.
-//
-
 import SwiftUI
 import SwiftData
+
 
 @main
 struct YumemiPrefectureFortuneApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            UserProfile.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
