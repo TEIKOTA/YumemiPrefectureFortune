@@ -10,11 +10,22 @@ struct FortuneProfileFormView: View {
 }
 
 #Preview("light") {
-    FortuneProfileFormView()
+    PreviewSheetWrapper()
         .preferredColorScheme(.light)
 }
 
 #Preview("dark") {
-    FortuneProfileFormView()
+    PreviewSheetWrapper()
         .preferredColorScheme(.dark)
+}
+
+struct PreviewSheetWrapper: View {
+    @State private var showSheet = true
+    
+    var body: some View {
+        EmptyView()
+            .sheet(isPresented: $showSheet) {
+            FortuneProfileFormView()
+        }
+    }
 }
