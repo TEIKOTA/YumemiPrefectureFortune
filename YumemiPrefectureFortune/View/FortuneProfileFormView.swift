@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 
-struct ContentView: View {
+struct FortuneProfileFormView: View {
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
@@ -10,11 +10,11 @@ struct ContentView: View {
 }
 
 #Preview("light") {
-    ContentView()
+    FortuneProfileFormView()
         .preferredColorScheme(.light)
 }
 
 #Preview("dark") {
-    ContentView()
+    FortuneProfileFormView()
         .preferredColorScheme(.dark)
 }

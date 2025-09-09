@@ -19,7 +19,7 @@ struct YumemiPrefectureFortuneApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FortuneProfileFormView()
         }
         .modelContainer(sharedModelContainer)
     }
