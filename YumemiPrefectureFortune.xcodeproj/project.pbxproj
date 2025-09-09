@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		701F649D2E6FD48700495698 /* DESIGN.md in Resources */ = {isa = PBXBuildFile; fileRef = 701F649C2E6FD48700495698 /* DESIGN.md */; };
+		701F649F2E6FD49400495698 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 701F649E2E6FD49400495698 /* README.md */; };
+		701F64A12E6FD49A00495698 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 701F64A02E6FD49A00495698 /* Secrets.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		700D02772E668BCB009DCF63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,18 +33,10 @@
 		700D02672E668BCA009DCF63 /* YumemiPrefectureFortune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YumemiPrefectureFortune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		700D02762E668BCB009DCF63 /* YumemiPrefectureFortuneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumemiPrefectureFortuneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		700D02802E668BCB009DCF63 /* YumemiPrefectureFortuneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumemiPrefectureFortuneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		701F649C2E6FD48700495698 /* DESIGN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
+		701F649E2E6FD49400495698 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		701F64A02E6FD49A00495698 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		700D03612E6DC4EF009DCF63 /* Exceptions for "YumemiPrefectureFortuneTests" folder in "Compile Sources" phase from "YumemiPrefectureFortuneTests" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 700D02722E668BCB009DCF63 /* Sources */;
-			membershipExceptions = (
-				requestExample.json,
-				responseExample.json,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		700D02692E668BCA009DCF63 /* YumemiPrefectureFortune */ = {
@@ -48,9 +46,6 @@
 		};
 		700D02792E668BCB009DCF63 /* YumemiPrefectureFortuneTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				700D03612E6DC4EF009DCF63 /* Exceptions for "YumemiPrefectureFortuneTests" folder in "Compile Sources" phase from "YumemiPrefectureFortuneTests" target */,
-			);
 			path = YumemiPrefectureFortuneTests;
 			sourceTree = "<group>";
 		};
@@ -93,6 +88,9 @@
 				700D02792E668BCB009DCF63 /* YumemiPrefectureFortuneTests */,
 				700D02832E668BCB009DCF63 /* YumemiPrefectureFortuneUITests */,
 				700D02682E668BCA009DCF63 /* Products */,
+				701F649C2E6FD48700495698 /* DESIGN.md */,
+				701F649E2E6FD49400495698 /* README.md */,
+				701F64A02E6FD49A00495698 /* Secrets.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,6 +224,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				701F64A12E6FD49A00495698 /* Secrets.xcconfig in Resources */,
+				701F649F2E6FD49400495698 /* README.md in Resources */,
+				701F649D2E6FD48700495698 /* DESIGN.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
