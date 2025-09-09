@@ -9,13 +9,17 @@ final class FortuneProfileFormViewModel: ObservableObject {
     @Published var bloodType: BloodType?
     @Published var introduction: String?
     @Published var icon: Data?
-    
-    // 存在するなら編集、nilなら新規
-    private var existingProfile: UserProfile?
+    // UI表示用のUIImage型プロパティ
+    @Published var iconImage: UIImage?
+    @Published var mode: ProfileFormMode
+
     
     init(user: UserProfile?) {
         
-        guard let user else { return }
+        guard let user else {
+            self.mode = .create
+            return
+        }
         
         self.name = user.name
         self.birthday = user.birthday
@@ -23,35 +27,26 @@ final class FortuneProfileFormViewModel: ObservableObject {
         self.introduction = user.introduction
         self.icon = user.icon
         
-        self.existingProfile = user
+        self.mode = .edit(user)
     }
     
     func save() throws -> UserProfile {
         
         // 未入力の場合を弾く
         guard let name = name, !name.isEmpty else {
-            throw ValidationError.missingField(field: "Name")
+            throw ValidationError.missingField(field: "名前")
         }
         
         guard let birthday = birthday else {
-            throw ValidationError.missingField(field: "birthday")
+            throw ValidationError.missingField(field: "誕生日")
         }
         
         guard let bloodType = bloodType else {
-            throw ValidationError.missingField(field: "bloodType")
+            throw ValidationError.missingField(field: "血液型")
         }
         
-        if let existingProfile {
-            
-            existingProfile.update(name: name,
-                                   birthday: birthday,
-                                   bloodType: bloodType,
-                                   introduction: introduction,
-                                   icon: icon)
-            return existingProfile
-            
-        }else {
-            
+        switch mode {
+        case .create:
             let newUserProfile = UserProfile(
                 name: name,
                 birthday: birthday,
@@ -59,12 +54,45 @@ final class FortuneProfileFormViewModel: ObservableObject {
                 introduction: introduction,
                 icon: icon
             )
+            
             return newUserProfile
-
+            
+        case .edit(let existingProfile):
+            existingProfile.update(name: name,
+                                   birthday: birthday,
+                                   bloodType: bloodType,
+                                   introduction: introduction,
+                                   icon: icon)
+            
+            return existingProfile
         }
     }
+enum ProfileFormMode {
+    case create
+    case edit(UserProfile)
 }
 
 enum ValidationError: Error {
     case missingField(field: String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .missingField(field: let field):
+            return "\(field)を入力してください。"
+        }
+    }
+}
+
+enum IconLoadError: Error {
+    case failedToReadItem
+    case dataCorrupted
+    
+    var errorDescription: String? {
+        switch self {
+        case .failedToReadItem:
+            return "写真を読み込めませんでした。別の写真を選択してください。"
+        case .dataCorrupted:
+            return "選択した写真は壊れています。別の写真を選んでください。"
+        }
+    }
 }
