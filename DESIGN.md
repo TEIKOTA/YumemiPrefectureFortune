@@ -284,14 +284,14 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
     -   [x] `FortuneAPIService`を実装
     -   [x] **UnitTest:** モックを使ったAPIクライアントのテスト
 -   **`feature/api-image-client`**
-    -   [ ] `ImageService`の画像取得・検索部分を実装
+    -   [x] `ImageService`の画像取得・検索部分を実装
     -   [ ] **UnitTest:** モックを使った画像取得処理のテスト
 -   **`feature/api-caching`**
-    -   [ ] `ImageService`にキャッシュ機構を実装
+    -   [x] `ImageService`にキャッシュ機構を実装
     -   [ ] **UnitTest:** キャッシュの追加・取得・削除ロジックを検証
 -   **`feature/api-error-handling`**
-    -   [ ] `APIError` enumなど、カスタムエラー型を定義
-    -   [ ] 各APIサービスクラスにエラーハンドリングを組み込む
+    -   [x] `APIError` enumなど、カスタムエラー型を定義
+    -   [x] 各APIサービスクラスにエラーハンドリングを組み込む
 
 #### **Phase 3: プロフィール作成・編集機能**
 *(API層やモデルに依存します)*
