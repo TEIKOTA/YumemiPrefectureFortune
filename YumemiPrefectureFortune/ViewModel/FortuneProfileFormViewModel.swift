@@ -67,6 +67,11 @@ final class FortuneProfileFormViewModel: ObservableObject {
             return existingProfile
         }
     }
+    
+    private func resetIcon() {
+        self.icon = nil
+        self.iconImage = nil
+    }
 enum ProfileFormMode {
     case create
     case edit(UserProfile)
