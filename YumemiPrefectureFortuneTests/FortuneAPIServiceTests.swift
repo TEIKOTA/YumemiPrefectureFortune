@@ -26,13 +26,13 @@ final class FortuneAPIServiceTests {
     // MARK: - Setup with MockURLProtocol
 
     func setup(withResponseData data: Data? = nil, statusCode: Int = 200, error: Error? = nil) {
-        MockURLProtocol.requestHandler = { request in
+        MockURLProtocol.setHandler(handler: { request in
             if let error = error {
                 throw error
             }
             let response = HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
             return (response, data)
-        }
+        })
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [MockURLProtocol.self]
         session = URLSession(configuration: config)
@@ -112,42 +112,5 @@ final class FortuneAPIServiceTests {
         } catch {
             XCTFail("Expected APIError but got \(error)")
         }
-    }
-}
-
-// MARK: - MockURLProtocol
-
-final class MockURLProtocol: URLProtocol {
-
-    static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data?))?
-
-    override class func canInit(with request: URLRequest) -> Bool {
-        // Handle all requests
-        return true
-    }
-
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        return request
-    }
-
-    override func startLoading() {
-        guard let handler = MockURLProtocol.requestHandler else {
-            fatalError("Request handler is not set.")
-        }
-
-        do {
-            let (response, data) = try handler(request)
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-            if let data = data {
-                client?.urlProtocol(self, didLoad: data)
-            }
-            client?.urlProtocolDidFinishLoading(self)
-        } catch {
-            client?.urlProtocol(self, didFailWithError: error)
-        }
-    }
-
-    override func stopLoading() {
-        // No-op
     }
 }
