@@ -297,8 +297,8 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
 *(API層やモデルに依存します)*
 
 -   **`feature/profile-form-viewmodel`**
-    -   [ ] `FortuneProfileFormViewModel`のロジックを実装
-    -   [ ] **UnitTest:** バリデーションや保存ロジックを検証
+    -   [x] `FortuneProfileFormViewModel`のロジックを実装
+    -   [x] **UnitTest:** バリデーションや保存ロジックを検証
 -   **`feature/profile-form-ui`**
     -   [ ] `FortuneProfileFormView`のUIを構築
     -   [ ] ViewModelとUIをバインディング
