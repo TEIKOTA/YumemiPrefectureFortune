@@ -3,6 +3,11 @@ import SwiftData
 
 
 struct FortuneProfileFormView: View {
+    @StateObject var viewModel: FortuneProfileFormViewModel
+
+    init(user: UserProfile?) {
+        _viewModel = StateObject(wrappedValue: FortuneProfileFormViewModel(user: user))
+    }
     
     var body: some View {
         NavigationStack {
@@ -76,7 +81,7 @@ struct PreviewSheetWrapper: View {
     var body: some View {
         Text("Preview")
             .sheet(isPresented: $showSheet) {
-                FortuneProfileFormView()
+                FortuneProfileFormView(user: nil)
                     .presentationCornerRadius(24)
             }
     }
