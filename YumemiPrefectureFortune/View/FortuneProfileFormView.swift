@@ -3,12 +3,18 @@ import SwiftData
 import PhotosUI
 
 struct FortuneProfileFormView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
+
     @StateObject var viewModel: FortuneProfileFormViewModel
     
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var imageError: Error?
     @State private var showImageErrorAlert: Bool = false
-
+    
+    @State private var validationError: Error?
+    @State private var showValidationErrorAlert: Bool = false
+    
     private let labelWidth: CGFloat = 80
     private let componentHeight: CGFloat = 24
     
@@ -163,7 +169,12 @@ struct FortuneProfileFormView: View {
                 
             }
             .padding(24)
-            .alert("", isPresented: $showImageErrorAlert, presenting: imageError) { _ in
+            .alert("画像読み込みエラー", isPresented: $showImageErrorAlert, presenting: imageError) { _ in
+                Button("OK") {}
+            } message: { error in
+                Text(error.localizedDescription)
+            }
+            .alert("入力エラー", isPresented: $showValidationErrorAlert, presenting: validationError) { _ in
                 Button("OK") {}
             } message: { error in
                 Text(error.localizedDescription)
@@ -171,14 +182,23 @@ struct FortuneProfileFormView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("キャンセル") {
-                        // キャンセル処理
+                        dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button {
-                        // 保存処理
-                    } label: {
-                        Text("保存")
+                    Button("保存") {
+                        do {
+                            let savedProfile = try viewModel.save()
+                            
+                            if case .create = viewModel.mode {
+                                modelContext.insert(savedProfile)
+                            }
+                            
+                            dismiss()
+                        } catch {
+                            self.validationError = error
+                            self.showValidationErrorAlert = true
+                        }
                     }
                 }
             }
