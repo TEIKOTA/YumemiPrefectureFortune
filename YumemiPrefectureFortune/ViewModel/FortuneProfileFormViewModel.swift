@@ -101,7 +101,7 @@ enum ProfileFormMode {
     case edit(UserProfile)
 }
 
-enum ValidationError: Error {
+enum ValidationError: LocalizedError {
     case missingField(field: String)
     
     var errorDescription: String? {
