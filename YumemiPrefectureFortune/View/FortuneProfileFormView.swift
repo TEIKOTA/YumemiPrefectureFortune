@@ -84,6 +84,7 @@ struct FortuneProfileFormView: View {
                     TextField("名前を入力",
                               text: $viewModel.name.nonOptional(defaultValue: ""))
                     .frame(height: componentHeight)
+                    .accessibilityIdentifier("profileNameTextField")
                     .onChange(of: viewModel.name ?? "") { oldValue, newValue in
                         /// APIの理論上の最大文字数は127だが視認性の観点から16にする
                         let nameMaxLength: Int = 16
@@ -107,6 +108,7 @@ struct FortuneProfileFormView: View {
                         selection: $viewModel.birthday
                     )
                     .frame(height: componentHeight)
+                    .accessibilityIdentifier("birthdaySelectionButton")
                     
                 }
                 Divider()
@@ -130,6 +132,7 @@ struct FortuneProfileFormView: View {
                            .frame(height: componentHeight)
                            .accentColor(viewModel.bloodType == nil ?
                                         Color(UIColor.placeholderText) : .accentColor)
+                           .accessibilityIdentifier("bloodTypePicker")
                     
                     Spacer()
                     
@@ -200,6 +203,7 @@ struct FortuneProfileFormView: View {
                             self.showValidationErrorAlert = true
                         }
                     }
+                    .accessibilityIdentifier("save")
                 }
             }
         }
