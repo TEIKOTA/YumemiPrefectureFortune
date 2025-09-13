@@ -1,9 +1,12 @@
 import SwiftUI
 import SwiftData
+import PhotosUI
 
 
 struct FortuneProfileFormView: View {
     @StateObject var viewModel: FortuneProfileFormViewModel
+    
+    @State private var selectedPhotoItem: PhotosPickerItem?
 
     private let labelWidth: CGFloat = 80
     private let componentHeight: CGFloat = 24
@@ -16,29 +19,52 @@ struct FortuneProfileFormView: View {
         NavigationStack {
             VStack(spacing: 16) {
                 
-                ZStack(alignment: .center) {
-                    
-                    let radius: CGFloat = 100 / 2
+                PhotosPicker(
+                    selection: $selectedPhotoItem,
+                    matching: .images,
+                    photoLibrary: .shared()
+                ) {
+                    ZStack(alignment: .center) {
+                        let diameter: CGFloat = 100
+                        if let image = viewModel.iconImage {
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: diameter, height: diameter)
+                                .clipShape(Circle())
+                        } else {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: diameter, height: diameter)
+                                .foregroundColor(Color(UIColor.placeholderText))
+                                .clipShape(Circle())
+                        }
 
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: radius * 2, height: radius * 2)
-                        .foregroundColor(Color(UIColor.placeholderText))
-                        .clipShape(Circle())
-
-                    let angle = CGFloat.pi / 4
-                    
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 30))
-                        .foregroundColor(.accentColor)
-                        .background(Circle().fill(Color(UIColor.systemBackground)))
-                        .offset(
-                            x: radius * cos(angle),
-                            y: radius * sin(angle)
-                        )
+                        let radius: CGFloat = diameter / 2
+                        let angle = CGFloat.pi / 4
+                        
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: diameter * 0.3))
+                            .foregroundColor(.accentColor)
+                            .background(Circle().fill(Color(UIColor.systemBackground)))
+                            .offset(
+                                x: radius * cos(angle),
+                                y: radius * sin(angle)
+                            )
+                    }
                 }
                 .padding(.bottom)
+                .onChange(of: selectedPhotoItem) { _, newItem in
+                    Task {
+                        do {
+                            try await viewModel.loadIcon(from: newItem)
+                        } catch {
+                            print("画像の読み込みに失敗しました: \(error.localizedDescription)")
+                        }
+                    }
+                }
+
                 Divider()
                 
                 HStack {
