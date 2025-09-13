@@ -300,9 +300,9 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
     -   [x] `FortuneProfileFormViewModel`のロジックを実装
     -   [x] **UnitTest:** バリデーションや保存ロジックを検証
 -   **`feature/profile-form-ui`**
-    -   [ ] `FortuneProfileFormView`のUIを構築
-    -   [ ] ViewModelとUIをバインディング
-    -   [ ] **UITest:** プロフィールが正常に作成・編集できるか一連の流れをテスト
+    -   [x] `FortuneProfileFormView`のUIを構築
+    -   [x] ViewModelとUIをバインディング
+    -   [x] **UITest:** プロフィールが正常に作成・編集できるか一連の流れをテスト
 
 #### **Phase 4: ユーザーリスト機能**
 *(モデル定義に依存します)*
