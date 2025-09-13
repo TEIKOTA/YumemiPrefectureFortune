@@ -7,8 +7,7 @@ struct FortuneProfileFormView: View {
 
     private let labelWidth: CGFloat = 80
     private let componentHeight: CGFloat = 24
-    /// APIの理論上の最大文字数は127だが視認性の観点から16にする
-    private let nameMaxLength: Int = 16
+    
     init(user: UserProfile?) {
         _viewModel = StateObject(wrappedValue: FortuneProfileFormViewModel(user: user))
     }
@@ -52,6 +51,9 @@ struct FortuneProfileFormView: View {
                               text: $viewModel.name.nonOptional(defaultValue: ""))
                     .frame(height: componentHeight)
                     .onChange(of: viewModel.name ?? "") { oldValue, newValue in
+                        /// APIの理論上の最大文字数は127だが視認性の観点から16にする
+                        let nameMaxLength: Int = 16
+                        
                         if newValue.count > nameMaxLength {
                             viewModel.name = String(newValue.prefix(nameMaxLength))
                         }
