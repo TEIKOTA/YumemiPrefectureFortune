@@ -98,6 +98,21 @@ struct FortuneProfileFormView: View {
                 
                 HStack {
                     
+                    Text("生年月日")
+                        .frame(width: labelWidth,
+                               height: componentHeight,
+                               alignment: .leading)
+                    DateSelectionButton(
+                        placeholder: "日付を選択",
+                        selection: $viewModel.birthday
+                    )
+                    .frame(height: componentHeight)
+                    
+                }
+                Divider()
+                
+                HStack {
+                    
                     Text("血液型")
                         .frame(width: labelWidth - 10,
                                height: componentHeight,
@@ -117,21 +132,6 @@ struct FortuneProfileFormView: View {
                                         Color(UIColor.placeholderText) : .accentColor)
                     
                     Spacer()
-                    
-                }
-                Divider()
-                
-                HStack {
-                    
-                    Text("生年月日")
-                        .frame(width: labelWidth,
-                               height: componentHeight,
-                               alignment: .leading)
-                    DateSelectionButton(
-                        placeholder: "日付を選択",
-                        selection: $viewModel.birthday
-                    )
-                    .frame(height: componentHeight)
                     
                 }
                 Divider()
