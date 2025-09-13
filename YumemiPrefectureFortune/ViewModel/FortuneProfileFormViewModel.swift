@@ -112,7 +112,7 @@ enum ValidationError: Error {
     }
 }
 
-enum IconLoadError: Error {
+enum IconLoadError: LocalizedError {
     case failedToReadItem
     case dataCorrupted
     
