@@ -5,6 +5,10 @@ import SwiftData
 struct FortuneProfileFormView: View {
     @StateObject var viewModel: FortuneProfileFormViewModel
 
+    private let labelWidth: CGFloat = 80
+    private let componentHeight: CGFloat = 24
+    /// APIの理論上の最大文字数は127だが視認性の観点から16にする
+    private let nameMaxLength: Int = 16
     init(user: UserProfile?) {
         _viewModel = StateObject(wrappedValue: FortuneProfileFormViewModel(user: user))
     }
@@ -17,32 +21,98 @@ struct FortuneProfileFormView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 100, height: 100)
+                    .foregroundColor(.secondary)
                     .clipShape(Circle())
+                    .padding(.bottom)
+                Divider()
                 
                 HStack {
+                    
                     Text("名前")
-                        .frame(width: 80, alignment: .leading)
-                    // 名前入力欄
-                    Spacer()
+                        .frame(width: labelWidth,
+                               height: componentHeight,
+                               alignment: .leading)
+                    TextField("名前を入力",
+                              text: $viewModel.name.nonOptional(defaultValue: ""))
+                    .frame(height: componentHeight)
+                    .onChange(of: viewModel.name ?? "") { oldValue, newValue in
+                        if newValue.count > nameMaxLength {
+                            viewModel.name = String(newValue.prefix(nameMaxLength))
+                        }
+                    }
+                    
                 }
+                Divider()
+                
                 HStack {
+                    
                     Text("血液型")
-                        .frame(width: 80, alignment: .leading)
-                    // 血液型入力欄
+                        .frame(width: labelWidth - 10,
+                               height: componentHeight,
+                               alignment: .leading)
+                    
+                    Picker("BloodTypePicker",
+                           selection: $viewModel.bloodType) {
+                        Text("血液型を選択")
+                            .tag(nil as BloodType?)
+                        ForEach(BloodType.allCases) { bloodType in
+                            Text(bloodType.displayName)
+                                .tag(bloodType as BloodType?)
+                        }
+                    }
+                           .frame(height: componentHeight)
+                           .accentColor(viewModel.bloodType == nil ?
+                                        Color(UIColor.placeholderText) : .accentColor)
+                    
                     Spacer()
+                    
                 }
+                Divider()
+                
                 HStack {
+                    
                     Text("生年月日")
-                        .frame(width: 80, alignment: .leading)
-                    // 生年月日入力欄
-                    Spacer()
+                        .frame(width: labelWidth,
+                               height: componentHeight,
+                               alignment: .leading)
+                    DateSelectionButton(
+                        placeholder: "日付を選択",
+                        selection: $viewModel.birthday
+                    )
+                    .frame(height: componentHeight)
+                    
                 }
+                Divider()
+                
                 HStack {
-                    Text("自己紹介")
-                        .frame(width: 80, alignment: .leading)
-                    // 自己紹介入力欄
-                    Spacer()
+                    
+                    VStack {
+                        Text("自己紹介")
+                            .frame(width: labelWidth,
+                                   height: componentHeight,
+                                   alignment: .leading)
+                        Spacer()
+                    }
+                    
+                    VStack {
+                        ZStack(alignment: .topLeading) {
+                            TextEditor(text: $viewModel.introduction.nonOptional(defaultValue: ""))
+                            VStack {
+                                if viewModel.introduction?.isEmpty ?? true {
+                                    Text("任意")
+                                        .frame(width: .infinity,
+                                               height: componentHeight,
+                                               alignment: .leading)
+                                        .foregroundColor(Color(UIColor.placeholderText))
+                                    Spacer()
+                                }
+                            }
+                        }
+                        Spacer()
+                    }
                 }
+                .frame(height: componentHeight * 3)
+                Divider()
                 Spacer()
                 
             }
