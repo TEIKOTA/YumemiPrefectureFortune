@@ -17,13 +17,29 @@ struct FortuneProfileFormView: View {
         NavigationStack {
             VStack(spacing: 16) {
                 
-                Image(systemName: "person.crop.circle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.secondary)
-                    .clipShape(Circle())
-                    .padding(.bottom)
+                ZStack(alignment: .center) {
+                    
+                    let radius: CGFloat = 100 / 2
+
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: radius * 2, height: radius * 2)
+                        .foregroundColor(Color(UIColor.placeholderText))
+                        .clipShape(Circle())
+
+                    let angle = CGFloat.pi / 4
+                    
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 30))
+                        .foregroundColor(.accentColor)
+                        .background(Circle().fill(Color(UIColor.systemBackground)))
+                        .offset(
+                            x: radius * cos(angle),
+                            y: radius * sin(angle)
+                        )
+                }
+                .padding(.bottom)
                 Divider()
                 
                 HStack {
