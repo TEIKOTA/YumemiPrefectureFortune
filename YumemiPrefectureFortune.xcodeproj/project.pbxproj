@@ -10,6 +10,7 @@
 		701F649D2E6FD48700495698 /* DESIGN.md in Resources */ = {isa = PBXBuildFile; fileRef = 701F649C2E6FD48700495698 /* DESIGN.md */; };
 		701F649F2E6FD49400495698 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 701F649E2E6FD49400495698 /* README.md */; };
 		701F64A12E6FD49A00495698 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 701F64A02E6FD49A00495698 /* Secrets.xcconfig */; };
+		70B34AA42E755ACA00C58479 /* FortuneProfileFormViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B34AA22E755ACA00C58479 /* FortuneProfileFormViewUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		701F649C2E6FD48700495698 /* DESIGN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
 		701F649E2E6FD49400495698 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		701F64A02E6FD49A00495698 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		70B34AA22E755ACA00C58479 /* FortuneProfileFormViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneProfileFormViewUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -60,11 +62,6 @@
 		700D02792E668BCB009DCF63 /* YumemiPrefectureFortuneTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = YumemiPrefectureFortuneTests;
-			sourceTree = "<group>";
-		};
-		700D02832E668BCB009DCF63 /* YumemiPrefectureFortuneUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = YumemiPrefectureFortuneUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -99,11 +96,11 @@
 			children = (
 				700D02692E668BCA009DCF63 /* YumemiPrefectureFortune */,
 				700D02792E668BCB009DCF63 /* YumemiPrefectureFortuneTests */,
-				700D02832E668BCB009DCF63 /* YumemiPrefectureFortuneUITests */,
 				700D02682E668BCA009DCF63 /* Products */,
 				701F649C2E6FD48700495698 /* DESIGN.md */,
 				701F649E2E6FD49400495698 /* README.md */,
 				701F64A02E6FD49A00495698 /* Secrets.xcconfig */,
+				70B34AA32E755ACA00C58479 /* YumemiPrefectureFortuneUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +112,14 @@
 				700D02802E668BCB009DCF63 /* YumemiPrefectureFortuneUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		70B34AA32E755ACA00C58479 /* YumemiPrefectureFortuneUITests */ = {
+			isa = PBXGroup;
+			children = (
+				70B34AA22E755ACA00C58479 /* FortuneProfileFormViewUITests.swift */,
+			);
+			path = YumemiPrefectureFortuneUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +182,6 @@
 			);
 			dependencies = (
 				700D02822E668BCB009DCF63 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				700D02832E668BCB009DCF63 /* YumemiPrefectureFortuneUITests */,
 			);
 			name = YumemiPrefectureFortuneUITests;
 			packageProductDependencies = (
@@ -278,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70B34AA42E755ACA00C58479 /* FortuneProfileFormViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +360,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				"OTHER_SWIFT_FLAGS[arch=*]" = "-DPIXABAY_API_KEY=\"\\\"$(PIXABAY_API_KEY)\\\"\"";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -417,7 +419,6 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				"OTHER_SWIFT_FLAGS[arch=*]" = "-DPIXABAY_API_KEY=\"\\\"$(PIXABAY_API_KEY)\\\"\"";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
