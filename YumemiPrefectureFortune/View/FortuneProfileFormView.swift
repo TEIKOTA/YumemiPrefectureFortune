@@ -2,11 +2,12 @@ import SwiftUI
 import SwiftData
 import PhotosUI
 
-
 struct FortuneProfileFormView: View {
     @StateObject var viewModel: FortuneProfileFormViewModel
     
     @State private var selectedPhotoItem: PhotosPickerItem?
+    @State private var imageError: Error?
+    @State private var showImageErrorAlert: Bool = false
 
     private let labelWidth: CGFloat = 80
     private let componentHeight: CGFloat = 24
@@ -60,7 +61,8 @@ struct FortuneProfileFormView: View {
                         do {
                             try await viewModel.loadIcon(from: newItem)
                         } catch {
-                            print("画像の読み込みに失敗しました: \(error.localizedDescription)")
+                            self.imageError = error
+                            self.showImageErrorAlert = true
                         }
                     }
                 }
@@ -161,6 +163,11 @@ struct FortuneProfileFormView: View {
                 
             }
             .padding(24)
+            .alert("", isPresented: $showImageErrorAlert, presenting: imageError) { _ in
+                Button("OK") {}
+            } message: { error in
+                Text(error.localizedDescription)
+            }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("キャンセル") {
