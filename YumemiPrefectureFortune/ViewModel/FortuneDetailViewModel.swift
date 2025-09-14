@@ -50,4 +50,12 @@ final class FortuneDetailViewModel: ObservableObject {
             
         }
     }
+    
+    private func fetchLogoImage(from url: URL) async {
+        
+    }
+    
+    private func fetchHeaderImage(query: String) async {
+        
+    }
 }
