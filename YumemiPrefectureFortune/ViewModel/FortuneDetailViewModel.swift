@@ -9,9 +9,14 @@ final class FortuneDetailViewModel: ObservableObject {
     @Published var headerImage: UIImage?
     @Published var isLoading: Bool
     
-    init(user: UserProfile) {
+    private let apiService: FortuneAPIServiceProtocol
+    private let imageService: ImageServiceProtocol
+    
+    init(user: UserProfile, apiService: FortuneAPIServiceProtocol = FortuneAPIService(), imageService: ImageServiceProtocol = ImageService()) {
         self.user = user
         self.isLoading = false
+        self.apiService = apiService
+        self.imageService = imageService
         fetchFortuneFromAPI(for: user)
     }
     
