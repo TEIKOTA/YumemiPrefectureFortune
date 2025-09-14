@@ -308,8 +308,8 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
 *(モデル定義に依存します)*
 
 -   **`feature/user-list-ui`**
-    -   [ ] `FortuneUserListView`のUIを構築
-    -   [ ] `@Query`を用いたリスト表示を実装
+    -   [x] `FortuneUserListView`のUIを構築
+    -   [x] `@Query`を用いたリスト表示を実装
 -   **`feature/user-list-actions`**
     -   [ ] 詳細画面への遷移、削除機能を実装
     -   [ ] **UITest:** 画面遷移、ユーザー削除が正しく動作するかテスト
