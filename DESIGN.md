@@ -318,8 +318,8 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
 *(すべての機能に依存します)*
 
 -   **`feature/fortune-detail-viewmodel`**
-    -   [ ] `FortuneDetailViewModel`のロジックを実装
-    -   [ ] **UnitTest:** 占い実行や状態遷移のロジックを検証
+    -   [x] `FortuneDetailViewModel`のロジックを実装
+    -   [x] **UnitTest:** 占い実行や状態遷移のロジックを検証
 -   **`feature/fortune-detail-ui`**
     -   [ ] `FortuneDetailView`のUIを構築
     -   [ ] ViewModelとUIをバインディング
