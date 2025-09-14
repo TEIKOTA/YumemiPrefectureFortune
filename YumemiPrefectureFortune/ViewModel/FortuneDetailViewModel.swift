@@ -52,10 +52,24 @@ final class FortuneDetailViewModel: ObservableObject {
     }
     
     private func fetchLogoImage(from url: URL) async {
-        
+        do {
+            let image = try await imageService.fetchImage(from: url)
+            await MainActor.run {
+                self.logoImage = image
+            }
+        } catch {
+            print("ロゴ画像の取得に失敗しました: \(error.localizedDescription)")
+        }
     }
     
     private func fetchHeaderImage(query: String) async {
-        
+        do {
+            let image = try await imageService.searchImage(for: query)
+            await MainActor.run {
+                self.headerImage = image
+            }
+        } catch {
+            print("ヘッダー画像の取得に失敗しました: \(error.localizedDescription)")
+        }
     }
 }
