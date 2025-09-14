@@ -21,6 +21,13 @@ struct FortuneRequestDTO: Encodable {
     let birthday: YMD
     let bloodType: String
     let today: YMD
+    
+    init(user: UserProfile) {
+        self.name = user.name
+        self.birthday = YMD(date: user.birthday)
+        self.bloodType = user.bloodType.rawValue
+        self.today = YMD(date: Date())
+    }
 }
 
 // MARK: - Response DTO
