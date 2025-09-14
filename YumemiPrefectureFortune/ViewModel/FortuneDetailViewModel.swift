@@ -33,9 +33,12 @@ final class FortuneDetailViewModel: ObservableObject {
                     self.user.updateFortune(with: result)
                     self.isLoading = false
                 }
+                /// asyncに変更することで並列に処理をするように
+                async let logoImageTask: () = fetchLogoImage(from: result.prefecture.logoUrl)
+                async let headerImageTask: () = fetchHeaderImage(query: result.prefecture.name)
                 
-                await fetchLogoImage(from: result.prefecture.logoUrl)
-                await fetchHeaderImage(query: result.prefecture.name)
+                await logoImageTask
+                await headerImageTask
                 
             } catch let apiError as APIError {
                 // APIエラーをハンドリング
