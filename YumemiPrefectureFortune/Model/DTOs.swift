@@ -6,6 +6,14 @@ struct YMD: Codable, Equatable {
     let year: Int
     let month: Int
     let day: Int
+    
+    init(date: Date) {
+        let calendar = Calendar.current
+        
+        self.year = calendar.component(.year, from: date)
+        self.month = calendar.component(.month, from: date)
+        self.day = calendar.component(.day, from: date)
+    }
 }
 
 struct FortuneRequestDTO: Encodable {
