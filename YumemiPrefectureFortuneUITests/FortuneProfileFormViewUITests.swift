@@ -16,11 +16,9 @@ final class FortuneProfileFormViewUITests: XCTestCase {
     /// 新規ユーザー作成の正常系テスト
     func testCreateUser_HappyPath() throws {
         // --- 準備 ---
-        // TODO: アプリの開始地点からプロフィール作成画面（シート）を表示する操作を記述してください
-        // 例:
-        // let addButton = app.buttons["addUserButton"]
-        // XCTAssertTrue(addButton.waitForExistence(timeout: 5))
-        // addButton.tap()
+        let addButton = app.buttons.firstMatch
+        XCTAssertTrue(addButton.waitForExistence(timeout: 1))
+        addButton.firstMatch.tap()
         
         // --- 操作 ---
         // 1. 名前の入力
@@ -61,8 +59,9 @@ final class FortuneProfileFormViewUITests: XCTestCase {
     /// バリデーションエラー（名前未入力）のテスト
     func testCreateUser_ValidationError_MissingName() throws {
         // --- 準備 ---
-        // TODO: プロフィール作成画面を表示する操作を記述
-        
+        let addButton = app.buttons.firstMatch
+        XCTAssertTrue(addButton.waitForExistence(timeout: 1))
+        addButton.firstMatch.tap()
         // --- 操作 ---
         // 1. 名前は入力しない
         
@@ -90,8 +89,9 @@ final class FortuneProfileFormViewUITests: XCTestCase {
     /// バリデーションエラー（誕生日未入力）のテスト
     func testCreateUser_ValidationError_MissingBirthday() throws {
         // --- 準備 ---
-        // TODO: プロフィール作成画面を表示する操作を記述
-        
+        let addButton = app.buttons.firstMatch
+        XCTAssertTrue(addButton.waitForExistence(timeout: 1))
+        addButton.firstMatch.tap()
         // --- 操作 ---
         // 1. 名前と血液型は入力する
         let nameTextField = app.textFields["profileNameTextField"]
@@ -126,8 +126,9 @@ final class FortuneProfileFormViewUITests: XCTestCase {
     /// バリデーションエラー（血液型未入力）のテスト
     func testCreateUser_ValidationError_MissingBloodType() throws {
         // --- 準備 ---
-        // TODO: プロフィール作成画面を表示する操作を記述
-        
+        let addButton = app.buttons.firstMatch
+        XCTAssertTrue(addButton.waitForExistence(timeout: 1))
+        addButton.firstMatch.tap()
         // --- 操作 ---
         // 1. 名前と誕生日は入力する
         let nameTextField = app.textFields["profileNameTextField"]
