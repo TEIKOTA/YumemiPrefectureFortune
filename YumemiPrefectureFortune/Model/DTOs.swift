@@ -14,6 +14,12 @@ struct YMD: Codable, Equatable {
         self.month = calendar.component(.month, from: date)
         self.day = calendar.component(.day, from: date)
     }
+    
+    init(year: Int, month: Int, day: Int) {
+        self.year = year
+        self.month = month
+        self.day = day
+    }
 }
 
 struct FortuneRequestDTO: Encodable {
@@ -27,6 +33,13 @@ struct FortuneRequestDTO: Encodable {
         self.birthday = YMD(date: user.birthday)
         self.bloodType = user.bloodType.rawValue
         self.today = YMD(date: Date())
+    }
+    
+    init(name: String, birthday: YMD, bloodType: String, today: YMD) {
+        self.name = name
+        self.birthday = birthday
+        self.bloodType = bloodType
+        self.today = today
     }
 }
 
