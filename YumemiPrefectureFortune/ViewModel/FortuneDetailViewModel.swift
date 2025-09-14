@@ -12,6 +12,12 @@ final class FortuneDetailViewModel: ObservableObject {
     init(user: UserProfile) {
         self.user = user
         self.isLoading = false
+        fetchFortuneFromAPI(for: user)
+    }
+    
+    func fetchFortuneFromAPI(for user: UserProfile) {
+        isLoading = true
+        //ここでAPIを叩く
     }
     
 }
