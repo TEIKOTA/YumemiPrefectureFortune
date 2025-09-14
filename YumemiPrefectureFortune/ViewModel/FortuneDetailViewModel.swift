@@ -33,6 +33,10 @@ final class FortuneDetailViewModel: ObservableObject {
                     self.user.updateFortune(with: result)
                     self.isLoading = false
                 }
+                
+                await fetchLogoImage(from: result.prefecture.logoUrl)
+                await fetchHeaderImage(query: result.prefecture.name)
+                
             } catch let apiError as APIError {
                 // APIエラーをハンドリング
                 await MainActor.run {
@@ -47,7 +51,6 @@ final class FortuneDetailViewModel: ObservableObject {
                     self.isLoading = false
                 }
             }
-            
         }
     }
     
