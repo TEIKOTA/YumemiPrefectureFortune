@@ -22,7 +22,32 @@ final class FortuneDetailViewModel: ObservableObject {
     
     func fetchFortuneFromAPI(for user: UserProfile) {
         isLoading = true
-        //ここでAPIを叩く
+        
+        let requestDTO = FortuneRequestDTO(user: self.user)
+        
+        Task {
+            do {
+                let result = try await apiService.fetchFortune(from: requestDTO)
+                
+                await MainActor.run {
+                    self.user.updateFortune(with: result)
+                    self.isLoading = false
+                }
+            } catch let apiError as APIError {
+                // APIエラーをハンドリング
+                await MainActor.run {
+                    // TODO: エラー内容をアラートで表示するなどの処理
+                    print("APIエラー: \\(apiError)")
+                    self.isLoading = false
+                }
+            } catch {
+                // その他の予期せぬエラー
+                await MainActor.run {
+                    print("不明なエラー: \\(error)")
+                    self.isLoading = false
+                }
+            }
+            
+        }
     }
-    
 }
