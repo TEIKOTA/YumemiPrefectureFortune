@@ -28,6 +28,10 @@ final class FortuneProfileFormViewModel: ObservableObject {
         self.introduction = user.introduction
         self.icon = user.icon
         
+        if let iconData = user.icon {
+            self.iconImage = UIImage(data: iconData)
+        }
+        
         self.mode = .edit(user)
     }
     
