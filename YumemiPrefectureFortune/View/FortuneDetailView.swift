@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct FortuneDetailView: View {
+    @StateObject var viewModel: FortuneDetailViewModel
+    
     var body: some View {
         // TODO: 背景色はプレースホルダーの段階で見やすくするためだけなので実装時は削除
         ScrollView {
@@ -123,15 +125,13 @@ struct FortuneDetailView: View {
 }
 
 #Preview("light") {
-    FortuneDetailView()
-            .preferredColorScheme(.light)
-
-    
+    let viewModel = FortuneDetailViewModel(user: SampleUserData.sampleUser)
+    FortuneDetailView(viewModel: viewModel)
+        .preferredColorScheme(.light)
 }
 
 #Preview("dark") {
-    FortuneDetailView()
-            .preferredColorScheme(.dark)
-
-    
+    let viewModel = FortuneDetailViewModel(user: SampleUserData.sampleUser)
+    FortuneDetailView(viewModel: viewModel)
+        .preferredColorScheme(.dark)
 }
