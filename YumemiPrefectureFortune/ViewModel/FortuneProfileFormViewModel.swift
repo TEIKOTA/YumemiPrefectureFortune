@@ -72,7 +72,7 @@ final class FortuneProfileFormViewModel: ObservableObject {
     func loadIcon(from item: PhotosPickerItem?) async throws {
         // ユーザーが選択を解除した場合、アイコンをリセットして正常終了
         guard let item else {
-            resetIcon()
+            await resetIcon()
             return
         }
         
@@ -84,11 +84,13 @@ final class FortuneProfileFormViewModel: ObservableObject {
             throw IconLoadError.dataCorrupted
         }
         
-        self.icon = data
-        self.iconImage = image
-        
+        await MainActor.run {
+            self.icon = data
+            self.iconImage = image
+        }
     }
     
+    @MainActor
     private func resetIcon() {
         self.icon = nil
         self.iconImage = nil
