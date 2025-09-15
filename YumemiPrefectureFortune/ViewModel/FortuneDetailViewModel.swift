@@ -5,6 +5,7 @@ import UIKit
 final class FortuneDetailViewModel: ObservableObject {
     
     @Published var user: UserProfile
+    @Published var fortune: FortuneResult?
     @Published var logoImage: UIImage?
     @Published var headerImage: UIImage?
     @Published var isLoading: Bool
@@ -28,6 +29,7 @@ final class FortuneDetailViewModel: ObservableObject {
         Task {
             do {
                 let result = try await apiService.fetchFortune(from: requestDTO)
+                fortune = result
                 
                 await MainActor.run {
                     self.user.updateFortune(with: result)
