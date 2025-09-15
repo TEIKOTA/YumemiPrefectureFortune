@@ -10,16 +10,27 @@ struct FortuneDetailView: View {
                 .resizable()
                 .frame(height: 200)
                 .background(.green)
-
+            
             HStack {
-                Image("")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 80)
-                    .background(.red)
-                    .clipShape(Circle())
-                    .padding(.top, -40)
-                    .padding(.leading, 20)
+                if let iconData = viewModel.user.icon, let uiImage = UIImage(data: iconData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                        .padding(.top, -40)
+                        .padding(.leading, 20)
+                } else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80, height: 80)
+                        .foregroundColor(Color(UIColor.placeholderText))
+                        .background()
+                        .clipShape(Circle())
+                        .padding(.top, -40)
+                        .padding(.leading, 20)
+                }
                 Spacer()
                 Button(action: {
                     // 編集ボタンを押したときの処理
@@ -30,15 +41,15 @@ struct FortuneDetailView: View {
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.gray, lineWidth: 2)
-                            )
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.gray, lineWidth: 2)
+                        )
                     
                 }
                 .padding(.trailing, 20)
             }
             
-            Text("名前")
+            Text(viewModel.user.name)
                 .font(.system(size: 32, weight: .semibold))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 20)
@@ -47,7 +58,7 @@ struct FortuneDetailView: View {
             
             HStack {
                 Spacer()
-                Text("X型")
+                Text(viewModel.user.bloodType.displayName + "型")
                     .font(.system(size: 16, weight: .medium))
                     .lineLimit(1)
                 /// gift.fillは誕生日のアイコンとする
@@ -56,14 +67,14 @@ struct FortuneDetailView: View {
                     .scaleEffect(0.8)
                     .padding(.leading, 20)
                     .padding(.trailing, -8)
-
-                Text("YYYY/MM/DD")
+                
+                Text(formatDate(viewModel.user.birthday))
                     .font(.system(size: 16, weight: .medium))
                     .padding(.trailing, 20)
                     .lineLimit(1)
             }
             .padding(.bottom, 8)
-            Text("自己紹介\n2行目\n3行目\n4行目")
+            Text(viewModel.user.introduction ?? "")
                 .font(.system(size: 12, weight: .regular))
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -121,6 +132,12 @@ struct FortuneDetailView: View {
             .padding(20)
         }
         .ignoresSafeArea(edges: .top)
+    }
+    
+    func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/M/d"
+        return formatter.string(from: date)
     }
 }
 
