@@ -30,7 +30,7 @@ final class FortuneAPIService: FortuneAPIServiceProtocol {
     }
     
     func fetchFortune(from requestDTO: FortuneRequestDTO) async throws -> FortuneResult {
-        guard let url = URL(string: "https://yumemi-inc.github.io/ios-junior-engineer-codecheck-backend/my_fortune") else {
+        guard let url = URL(string: "https://yumemi-ios-junior-engineer-codecheck.app.swift.cloud/my_fortune") else {
             throw APIError.invalidURL
         }
         
