@@ -8,6 +8,7 @@ final class FortuneDetailViewUITests: XCTestCase {
         try super.setUpWithError()
         continueAfterFailure = false
         app = XCUIApplication()
+        app.launchArguments += ["-UITesting"]
         app.launch()
     }
     

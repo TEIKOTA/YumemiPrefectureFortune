@@ -10,6 +10,7 @@ final class FortuneProfileFormViewUITests: XCTestCase {
         app = XCUIApplication()
         // テストのたびにデータをリセットしたい場合は、起動引数を設定することが多いです
         // app.launchArguments += ["-UITesting"]
+        app.launchArguments += ["-UITesting"]
         app.launch()
     }
     
