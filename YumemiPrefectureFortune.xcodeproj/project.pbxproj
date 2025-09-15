@@ -11,6 +11,7 @@
 		701F649F2E6FD49400495698 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 701F649E2E6FD49400495698 /* README.md */; };
 		701F64A12E6FD49A00495698 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 701F64A02E6FD49A00495698 /* Secrets.xcconfig */; };
 		70B34AA42E755ACA00C58479 /* FortuneProfileFormViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B34AA22E755ACA00C58479 /* FortuneProfileFormViewUITests.swift */; };
+		70E96D242E782215000BB6FF /* FortuneDetailViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E96D232E782215000BB6FF /* FortuneDetailViewUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		701F649E2E6FD49400495698 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		701F64A02E6FD49A00495698 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		70B34AA22E755ACA00C58479 /* FortuneProfileFormViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneProfileFormViewUITests.swift; sourceTree = "<group>"; };
+		70E96D232E782215000BB6FF /* FortuneDetailViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneDetailViewUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				70B34AA22E755ACA00C58479 /* FortuneProfileFormViewUITests.swift */,
+				70E96D232E782215000BB6FF /* FortuneDetailViewUITests.swift */,
 			);
 			path = YumemiPrefectureFortuneUITests;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70B34AA42E755ACA00C58479 /* FortuneProfileFormViewUITests.swift in Sources */,
+				70E96D242E782215000BB6FF /* FortuneDetailViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
