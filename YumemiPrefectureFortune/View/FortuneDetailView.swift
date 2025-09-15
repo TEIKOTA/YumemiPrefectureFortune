@@ -6,11 +6,22 @@ struct FortuneDetailView: View {
     var body: some View {
         // TODO: 背景色はプレースホルダーの段階で見やすくするためだけなので実装時は削除
         ScrollView {
-            Image("")
-                .resizable()
-                .frame(height: 200)
-                .background(.green)
-            
+            if let headerImage = viewModel.headerImage {
+                Image(uiImage: headerImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 180)
+                    .clipped()
+            } else {
+                // 画像読み込み中のプレースホルダー
+                Rectangle()
+                    .fill(Color(UIColor.systemGray4))
+                    .frame(height: 180)
+                    .overlay {
+                        ProgressView()
+                            .padding(.top, 40)
+                    }
+            }
             HStack {
                 if let iconData = viewModel.user.icon, let uiImage = UIImage(data: iconData) {
                     Image(uiImage: uiImage)
@@ -82,54 +93,57 @@ struct FortuneDetailView: View {
             /// 高さを取りすぎないように4行に制限
                 .lineLimit(4)
             
-            
-            VStack {
-                VStack(spacing: 16) {
-                    Text("今日の都道府県")
-                        .font(.system(size: 32, weight: .semibold))
-                    
-                    HStack {
-                        VStack {
-                            Spacer()
-                            Text("XX県")
-                                .font(.system(size: 50, weight: .bold))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text("xx市")
-                                .font(.system(size: 35, weight: .medium))
-                                .frame(maxWidth: .infinity, alignment: .center)
-                            Spacer()
-                        }
-                        Image("")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100)
-                            .background(.red)
-                            .clipShape(Circle())
+            if let result = viewModel.user.fortuneResult {
+                
+            } else {
+                VStack {
+                    VStack(spacing: 16) {
+                        Text("今日の都道府県")
+                            .font(.system(size: 32, weight: .semibold))
                         
+                        HStack {
+                            VStack {
+                                Spacer()
+                                Text("XX県")
+                                    .font(.system(size: 50, weight: .bold))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text("xx市")
+                                    .font(.system(size: 35, weight: .medium))
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                Spacer()
+                            }
+                            Image("")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                                .background(.red)
+                                .clipShape(Circle())
+                            
+                        }
+                        
+                        Text("Wikipediaによる概要")
+                            .font(.system(size: 16, weight: .regular))
+                            .foregroundColor(.secondary)
+                        
+                        HStack {
+                            Text("県民の日")
+                                .font(.system(size: 35, weight: .semibold))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("MM/DD")
+                                .font(.system(size: 35, weight: .semibold))
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
+                        Text("内陸／海沿い")
+                            .font(.system(size: 32, weight: .semibold))
                     }
-                    
-                    Text("Wikipediaによる概要")
-                        .font(.system(size: 16, weight: .regular))
-                        .foregroundColor(.secondary)
-
-                    HStack {
-                        Text("県民の日")
-                            .font(.system(size: 35, weight: .semibold))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text("MM/DD")
-                            .font(.system(size: 35, weight: .semibold))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                    }
-                    Text("内陸／海沿い")
-                        .font(.system(size: 32, weight: .semibold))
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 16)
                 }
-                .padding(.horizontal, 30)
-                .padding(.vertical, 16)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .background(Color.yellow)
+                .cornerRadius(20)
+                .padding(20)
             }
-            .frame(maxWidth: .infinity, alignment: .center)
-            .background(Color.yellow)
-            .cornerRadius(20)
-            .padding(20)
         }
         .ignoresSafeArea(edges: .top)
     }
