@@ -29,9 +29,9 @@ final class FortuneDetailViewModel: ObservableObject {
         Task {
             do {
                 let result = try await apiService.fetchFortune(from: requestDTO)
-                fortune = result
                 
                 await MainActor.run {
+                    self.fortune = result
                     self.user.updateFortune(with: result)
                     self.isLoading = false
                 }
