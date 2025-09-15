@@ -94,55 +94,65 @@ struct FortuneDetailView: View {
                 .lineLimit(4)
             
             if let result = viewModel.user.fortuneResult {
-                
-            } else {
-                VStack {
-                    VStack(spacing: 16) {
-                        Text("今日の都道府県")
-                            .font(.system(size: 32, weight: .semibold))
-                        
-                        HStack {
-                            VStack {
-                                Spacer()
-                                Text("XX県")
-                                    .font(.system(size: 50, weight: .bold))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Text("xx市")
-                                    .font(.system(size: 35, weight: .medium))
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                Spacer()
-                            }
-                            Image("")
+                VStack(spacing: 16) {
+                    Text("今日の都道府県")
+                        .font(.system(size: 32, weight: .semibold))
+                    
+                    HStack {
+                        VStack {
+                            Spacer()
+                            Text(result.prefecture.name)
+                                .font(.system(size: 50, weight: .bold))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(result.prefecture.capital)
+                                .font(.system(size: 35, weight: .medium))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            Spacer()
+                        }
+                        if let iconImage = viewModel.logoImage {
+                            Image(uiImage: iconImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
-                                .background(.red)
                                 .clipShape(Circle())
-                            
+                        } else {
+                            Circle()
+                                .fill(.clear)
+                                .frame(width: 100, height: 100)
+                                .overlay {
+                                    ProgressView()
+                                }
                         }
-                        
-                        Text("Wikipediaによる概要")
-                            .font(.system(size: 16, weight: .regular))
-                            .foregroundColor(.secondary)
-                        
+                    }
+                    
+                    Text(result.prefecture.brief)
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundColor(.secondary)
+                    
+                    if let citizenDay = result.prefecture.citizenDay {
                         HStack {
                             Text("県民の日")
                                 .font(.system(size: 35, weight: .semibold))
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            Text("MM/DD")
+                            Text(formatMonthDay(citizenDay))
                                 .font(.system(size: 35, weight: .semibold))
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                         }
-                        Text("内陸／海沿い")
-                            .font(.system(size: 32, weight: .semibold))
                     }
-                    .padding(.horizontal, 30)
-                    .padding(.vertical, 16)
+                    Text(result.prefecture.hasCoastLine ? "海沿い" : "内陸")
+                        .font(.system(size: 32, weight: .semibold))
+                        .foregroundColor(.secondary)
                 }
+                .padding(.horizontal, 30)
+                .padding(.vertical, 16)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .background(Color.yellow)
+                .background(.background)
                 .cornerRadius(20)
                 .padding(20)
+                .shadow(color:.primary.opacity(0.4), radius: 10, x: 0, y: 4)
+            } else {
+                ProgressView()
+                    .padding(30)
             }
         }
         .ignoresSafeArea(edges: .top)
@@ -152,6 +162,10 @@ struct FortuneDetailView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/M/d"
         return formatter.string(from: date)
+    }
+    
+    func formatMonthDay(_ monthDay: MonthDay) -> String {
+        return("\(monthDay.month)/\(monthDay.day)")
     }
 }
 
