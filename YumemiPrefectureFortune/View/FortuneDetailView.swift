@@ -62,6 +62,7 @@ struct FortuneDetailView: View {
                         
                     }
                     .padding(.trailing, 20)
+                    .accessibilityIdentifier("editButton")
                 }
                 
                 Text(viewModel.user.name)
@@ -70,6 +71,7 @@ struct FortuneDetailView: View {
                     .padding(.horizontal, 20)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
+                    .accessibilityIdentifier("userNameText")
                 
                 HStack {
                     Spacer()
@@ -110,6 +112,7 @@ struct FortuneDetailView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.5)
+                                    .accessibilityIdentifier("prefectureNameText")
                                 Text(result.prefecture.capital)
                                     .font(.system(size: 35, weight: .medium))
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -161,6 +164,7 @@ struct FortuneDetailView: View {
                 } else {
                     ProgressView()
                         .padding(30)
+                        .accessibilityIdentifier("loadingIndicator")
                 }
             }
             .ignoresSafeArea(edges: .top)
@@ -182,6 +186,7 @@ struct FortuneDetailView: View {
             .padding()
             .padding(.top, 20)
             .ignoresSafeArea(edges: .top)
+            .accessibilityIdentifier("backButton")
 
         }
         .navigationBarHidden(true)
