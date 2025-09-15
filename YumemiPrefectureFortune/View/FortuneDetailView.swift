@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FortuneDetailView: View {
     @StateObject var viewModel: FortuneDetailViewModel
+    @State var isSheetPresented = false
     
     var body: some View {
         // TODO: 背景色はプレースホルダーの段階で見やすくするためだけなので実装時は削除
@@ -28,6 +29,7 @@ struct FortuneDetailView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 80, height: 80)
+                        .background(.background)
                         .clipShape(Circle())
                         .padding(.top, -40)
                         .padding(.leading, 20)
@@ -44,7 +46,7 @@ struct FortuneDetailView: View {
                 }
                 Spacer()
                 Button(action: {
-                    // 編集ボタンを押したときの処理
+                    isSheetPresented = true
                 }) {
                     Text("編集")
                         .font(.system(size: 14, weight: .medium))
@@ -104,9 +106,13 @@ struct FortuneDetailView: View {
                             Text(result.prefecture.name)
                                 .font(.system(size: 50, weight: .bold))
                                 .frame(maxWidth: .infinity, alignment: .leading)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
                             Text(result.prefecture.capital)
                                 .font(.system(size: 35, weight: .medium))
-                                .frame(maxWidth: .infinity, alignment: .center)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
                             Spacer()
                         }
                         if let iconImage = viewModel.logoImage {
@@ -156,6 +162,9 @@ struct FortuneDetailView: View {
             }
         }
         .ignoresSafeArea(edges: .top)
+        .sheet(isPresented: $isSheetPresented) {
+            FortuneProfileFormView(user: viewModel.user)
+        }
     }
     
     func formatDate(_ date: Date) -> String {
