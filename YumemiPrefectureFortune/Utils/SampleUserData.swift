@@ -5,6 +5,13 @@ import Foundation
 
 @MainActor
 class SampleUserData {
+    
+    static let sampleUser: UserProfile = UserProfile(name: "山田 太郎",
+                                                     birthday: Date(),
+                                                     bloodType: .A,
+                                                     introduction: "よろしくお願いします！\n趣味はハイキングとフィッシング詐欺です。",
+                                                     icon: nil)
+    
     static let previewContainer: ModelContainer = {
         do {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
