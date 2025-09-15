@@ -34,6 +34,7 @@ struct FortuneUserListView: View {
                                         .font(.title3)
                                         .lineLimit(1)
                                         .truncationMode(.tail)
+                                        .accessibilityIdentifier(user.name)
                                 }
                                 .padding(.vertical, 4)
                             }
@@ -58,6 +59,7 @@ struct FortuneUserListView: View {
                         .shadow(radius: 2, x: 0, y: 4)
                 }
                 .padding()
+                .accessibilityIdentifier("addUserButton")
             }
         }
     }
