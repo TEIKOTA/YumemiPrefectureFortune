@@ -10,6 +10,7 @@ final class FortuneProfileFormViewUITests: XCTestCase {
         app = XCUIApplication()
         // テストのたびにデータをリセットしたい場合は、起動引数を設定することが多いです
         // app.launchArguments += ["-UITesting"]
+        app.launchArguments += ["-UITesting"]
         app.launch()
     }
     
@@ -26,6 +27,7 @@ final class FortuneProfileFormViewUITests: XCTestCase {
         XCTAssertTrue(nameTextField.waitForExistence(timeout: 1))
         nameTextField.tap()
         nameTextField.typeText("テストユーザー")
+        app.keyboards.buttons["Return"].tap() // キーボードを閉じる
         
         // 2. 生年月日の選択
         let birthdayButton = app.buttons["birthdaySelectionButton"]
@@ -98,6 +100,7 @@ final class FortuneProfileFormViewUITests: XCTestCase {
         XCTAssertTrue(nameTextField.waitForExistence(timeout: 1))
         nameTextField.tap()
         nameTextField.typeText("テストユーザー")
+        app.keyboards.buttons["Return"].tap() // キーボードを閉じる
         
         let bloodTypePicker = app.buttons["bloodTypePicker"]
         bloodTypePicker.tap()
@@ -135,6 +138,7 @@ final class FortuneProfileFormViewUITests: XCTestCase {
         XCTAssertTrue(nameTextField.waitForExistence(timeout: 1))
         nameTextField.tap()
         nameTextField.typeText("テストユーザー")
+        app.keyboards.buttons["Return"].tap() // キーボードを閉じる
         
         let birthdayButton = app.buttons["birthdaySelectionButton"]
         birthdayButton.tap()
