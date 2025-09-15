@@ -321,6 +321,6 @@ APIとの通信は、「2.1 Model」で定義されたDTO (Data Transfer Object)
     -   [x] `FortuneDetailViewModel`のロジックを実装
     -   [x] **UnitTest:** 占い実行や状態遷移のロジックを検証
 -   **`feature/fortune-detail-ui`**
-    -   [ ] `FortuneDetailView`のUIを構築
-    -   [ ] ViewModelとUIをバインディング
-    -   [ ] **UITest:** 占い結果が正しく表示されるか、ローディング表示が機能するかテスト
+    -   [x] `FortuneDetailView`のUIを構築
+    -   [x] ViewModelとUIをバインディング
+    -   [x] **UITest:** 占い結果が正しく表示されるか、ローディング表示が機能するかテスト
