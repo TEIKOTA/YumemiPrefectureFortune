@@ -7,7 +7,7 @@
 
 株式会社ゆめみ様の「iOS 未経験者エンジニア向けコードチェック課題」で作成した、あなたと相性のいい都道府県を占うiOSアプリです。
 
-## ⚠️注意
+## ⚠️ 注意
 **このアプリではPixabayAPIを使っています。**
 APIキーは以下のように追加してください。
 **追加しなくても動作自体はします。**
@@ -21,7 +21,7 @@ PIXABAY_API_KEY=${あなたのAPIキーをここに追加}
 ```
 **`""`で囲まないでください**
 
-## スクリーンショット
+## 📷 スクリーンショット
 
 ### ライトモード
 
@@ -36,7 +36,7 @@ PIXABAY_API_KEY=${あなたのAPIキーをここに追加}
 | ユーザーリスト(ユーザー不在時) | ユーザーリスト(ユーザー実在時) | ユーザー作成 | チュートリアル | ユーザー画面 |
 | :---: | :---: | :---: | :---: | :---: |
 | ![](screenshot/dark_list_nil.png) | ![](screenshot/dark_list_user.png) | ![](screenshot/dark_create.png) | ![](screenshot/dark_tutorial.png) | ![](screenshot/dark_detail.png) |
-## インストール・実行方法
+## 💻 インストール・実行方法
 
 1. Xcode 16.4 で `PrefectureCompatibilityApp.xcodeproj` を開く
 3. Cmd + R でビルド＆実行
