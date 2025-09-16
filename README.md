@@ -20,6 +20,22 @@ touch Secrets.xcconfig
 PIXABAY_API_KEY=${あなたのAPIキーをここに追加}
 ```
 **`""`で囲まないでください**
+
+## スクリーンショット
+
+### ライトモード
+
+| ユーザーリスト(ユーザー不在時) | ユーザーリスト(ユーザー実在時) | ユーザー作成 | チュートリアル | ユーザー画面 |
+| :---: | :---: | :---: | :---: | :---: |
+| ![](screenshot/light_list_nil.png) | ![](screenshot/light_list_user.png) | ![](screenshot/light_create.png) | ![](screenshot/light_tutorial.png) | ![](screenshot/light_detail.png) |
+
+---
+
+### ダークモード
+
+| ユーザーリスト(ユーザー不在時) | ユーザーリスト(ユーザー実在時) | ユーザー作成 | チュートリアル | ユーザー画面 |
+| :---: | :---: | :---: | :---: | :---: |
+| ![](screenshot/dark_list_nil.png) | ![](screenshot/dark_list_user.png) | ![](screenshot/dark_create.png) | ![](screenshot/dark_tutorial.png) | ![](screenshot/dark_detail.png) |
 ## インストール・実行方法
 
 1. Xcode 16.4 で `PrefectureCompatibilityApp.xcodeproj` を開く
