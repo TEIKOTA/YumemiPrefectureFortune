@@ -47,6 +47,13 @@ struct FortuneUserListView: View {
                     FortuneProfileFormView(user: nil)
                 }
                 
+                if users.isEmpty {
+                    EmptyListView()
+                        .onTapGesture {
+                            isSheetPresented = true
+                        }
+                }
+                
                 Button(action: {
                     isSheetPresented = true
                 }) {
@@ -80,9 +87,23 @@ struct FortuneUserListView: View {
     
 }
 
+#Preview("no data(light)") {
+    FortuneUserListView()
+            .preferredColorScheme(.light)
+
+    
+}
+
 #Preview("dark") {
     FortuneUserListView()
             .modelContainer(SampleUserData.previewContainer)
+            .preferredColorScheme(.dark)
+
+    
+}
+
+#Preview("no data(dark)") {
+    FortuneUserListView()
             .preferredColorScheme(.dark)
 
     
