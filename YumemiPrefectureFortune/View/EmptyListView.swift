@@ -26,7 +26,7 @@ struct EmptyListView: View {
                     .frame(width: 80, height: 80)
                     .foregroundStyle(.accent)
                 
-                Text("プロフィールを入力して\nぴったりの都道府県を占おう")
+                Text("プロフィールを入力して\nぴったりの都道府県を占おう！")
                     .font(.system(size: 24, weight: .semibold))
                     .foregroundColor(.secondary)
                     .lineLimit(2)

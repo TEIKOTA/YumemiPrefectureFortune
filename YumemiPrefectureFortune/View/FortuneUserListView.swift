@@ -52,6 +52,12 @@ struct FortuneUserListView: View {
                         .onTapGesture {
                             isSheetPresented = true
                         }
+                    
+                    
+                    JumpingArrowView()
+                    /// plusボタンはImage (28pt) + padding 16pt × 2 = 28 + 32 ≈ 60pt
+                    /// よってpaddingを70程度にすることでplusボタンの左上に
+                        .padding(70)
                 }
                 
                 Button(action: {
