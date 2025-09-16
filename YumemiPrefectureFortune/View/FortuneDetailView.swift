@@ -3,6 +3,8 @@ import SwiftUI
 struct FortuneDetailView: View {
     @Environment(\.dismiss) private var dismiss
     
+    @AppStorage("hasSeenTutorial") var hasSeenTutorial: Bool = false
+
     @StateObject var viewModel: FortuneDetailViewModel
     @State var isSheetPresented = false
     
@@ -190,6 +192,11 @@ struct FortuneDetailView: View {
 
         }
         .navigationBarHidden(true)
+        .overlay {
+            if !hasSeenTutorial {
+                TutorialView()
+            }
+        }
     }
     
     func formatDate(_ date: Date) -> String {
