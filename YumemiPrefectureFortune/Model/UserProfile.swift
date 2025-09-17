@@ -17,7 +17,9 @@ final class UserProfile {
     private(set) var bloodType: BloodType
     private(set) var introduction: String?
     private(set) var icon: Data?
-        
+    
+    private(set) var lastAccessedAt: Date?
+    
     @Transient var fortuneResult: FortuneResult?
     
     // MARK: - Initializer
@@ -35,6 +37,8 @@ final class UserProfile {
         self.bloodType = bloodType
         self.introduction = introduction
         self.icon = icon
+        
+        self.lastAccessedAt = Date()
     }
     
     // MARK: - Mutating Methods
@@ -54,5 +58,6 @@ final class UserProfile {
     
     public func updateFortune(with result: FortuneResult?) {
         self.fortuneResult = result
+        self.lastAccessedAt = Date()
     }
 }
