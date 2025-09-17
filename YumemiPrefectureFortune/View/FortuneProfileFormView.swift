@@ -158,8 +158,7 @@ struct FortuneProfileFormView: View {
                             VStack {
                                 if viewModel.introduction?.isEmpty ?? true {
                                     Text("任意")
-                                        .frame(width: .infinity,
-                                               height: componentHeight,
+                                        .frame(height: componentHeight,
                                                alignment: .leading)
                                         .foregroundColor(Color(UIColor.placeholderText))
                                     Spacer()
