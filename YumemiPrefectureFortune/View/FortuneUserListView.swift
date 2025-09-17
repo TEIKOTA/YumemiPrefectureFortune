@@ -7,7 +7,7 @@ struct FortuneUserListView: View {
     @State private var isSheetPresented = false
     @State private var path = NavigationPath()
     
-    @Query(sort: [SortDescriptor(\UserProfile.name)]) private var users: [UserProfile]
+    @Query(sort: [SortDescriptor(\UserProfile.lastAccessedAt)]) private var users: [UserProfile]
     
     var body: some View {
         NavigationStack(path: $path) {
