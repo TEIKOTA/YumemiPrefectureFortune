@@ -46,13 +46,13 @@ final class FortuneDetailViewModel: ObservableObject {
                 // APIエラーをハンドリング
                 await MainActor.run {
                     // TODO: エラー内容をアラートで表示するなどの処理
-                    print("APIエラー: \\(apiError)")
+                    print("APIエラー: \(apiError)")
                     self.isLoading = false
                 }
             } catch {
                 // その他の予期せぬエラー
                 await MainActor.run {
-                    print("不明なエラー: \\(error)")
+                    print("不明なエラー: \(error)")
                     self.isLoading = false
                 }
             }
