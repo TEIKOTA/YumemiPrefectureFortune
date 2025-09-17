@@ -171,7 +171,9 @@ struct FortuneDetailView: View {
             }
             .ignoresSafeArea(edges: .top)
             .sheet(isPresented: $isSheetPresented) {
-                FortuneProfileFormView(user: viewModel.user)
+                FortuneProfileFormView(user: viewModel.user) { savedUser in
+                    viewModel.fetchFortuneFromAPI(for: savedUser)
+                }
             }
             
             Button(action: {

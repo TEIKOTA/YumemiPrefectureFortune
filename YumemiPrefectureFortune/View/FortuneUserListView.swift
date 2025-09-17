@@ -5,11 +5,12 @@ struct FortuneUserListView: View {
     @Environment(\.modelContext) private var modelContext
     
     @State private var isSheetPresented = false
+    @State private var path = NavigationPath()
     
-    @Query(sort: [SortDescriptor(\UserProfile.name)]) private var users: [UserProfile]
+    @Query(sort: [SortDescriptor(\UserProfile.lastAccessedAt, order: .reverse)]) private var users: [UserProfile]
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ZStack(alignment: .bottomTrailing) {
                 
                 List {
@@ -43,8 +44,13 @@ struct FortuneUserListView: View {
                     .onDelete(perform: deleteUsers)
                 }
                 .navigationTitle("ともだちリスト")
+                .navigationDestination(for: UserProfile.self) { user in
+                    FortuneDetailView(viewModel: FortuneDetailViewModel(user: user))
+                }
                 .sheet(isPresented: $isSheetPresented) {
-                    FortuneProfileFormView(user: nil)
+                    FortuneProfileFormView(user: nil) { savedUser in
+                        path.append(savedUser)
+                    }
                 }
                 
                 if users.isEmpty {
