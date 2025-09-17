@@ -15,11 +15,14 @@ struct FortuneProfileFormView: View {
     @State private var validationError: Error?
     @State private var showValidationErrorAlert: Bool = false
     
+    var onSave: ((UserProfile) -> Void)?
+    
     private let labelWidth: CGFloat = 80
     private let componentHeight: CGFloat = 24
     
-    init(user: UserProfile?) {
+    init(user: UserProfile?, onSave: ((UserProfile) -> Void)? = nil) {
         _viewModel = StateObject(wrappedValue: FortuneProfileFormViewModel(user: user))
+        self.onSave = onSave
     }
     
     var body: some View {
@@ -197,6 +200,7 @@ struct FortuneProfileFormView: View {
                                 modelContext.insert(savedProfile)
                             }
                             
+                            onSave?(savedProfile)
                             dismiss()
                         } catch {
                             self.validationError = error
