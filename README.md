@@ -20,7 +20,10 @@ touch Secrets.xcconfig
 PIXABAY_API_KEY=${あなたのAPIキーをここに追加}
 ```
 **`""`で囲まないでください**
-
+#### 例
+```
+PIXABAY_API_KEY=ABC1234567890
+```
 ## 📷 スクリーンショット
 
 ### ライトモード
